@@ -12,14 +12,15 @@ app.use(bodyParser.json())
 
 const db = new sqlite3.Database(':memory:');
 db.serialize(function () {
- db.run(â€œCREATE TABLE user (username TEXT, password TEXT, title TEXT)â€œ);
- db.run(â€œINSERT INTO user VALUES ('privilegedUser', 'privilegedUser1', 'Administrator')â€œ);
+	db.run("CREATE TABLE user (username TEXT, password TEXT, title TEXT)");
+	db.run("INSERT INTO user VALUES ('privilegedUser', 'privilegedUser1', 'Administrator')");
 });
 
 
 app.get('/', function (req, res) {
     res.sendFile('index.html');
 });
+
 
 app.post('/login', function (req, res) {
 	var username = req.body.username;
